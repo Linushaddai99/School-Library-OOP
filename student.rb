@@ -7,6 +7,6 @@ class Student < Person
   end
 
   def play_hocky
-    '¯(ツ)/¯'
+    '¯\(ツ)/¯'
   end
 end
