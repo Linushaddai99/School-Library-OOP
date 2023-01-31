@@ -41,7 +41,6 @@ After you're finished please remove all the comments and instructions!
   - [📝 License ](#-license-)
 
 <!-- PROJECT DESCRIPTION -->
-# School-Library-OOP
 # 📖 [School-Library-OOP] <a name="about-project"></a>
 
 >This is a  school library app.
