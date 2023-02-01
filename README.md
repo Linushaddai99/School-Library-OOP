@@ -134,6 +134,18 @@ Example:
 
 - GitHub: [@linushaddai99](https://github.com/linushaddai99)
 - LinkedIn: [@linusshaddai](https://www.linkedin.com/in/linusshaddai/)
+-Twitter: [@ShaddaiLinus](https://twitter.com/ShaddaiLinus)
+
+<!-- FUTURE FEATURES -->
+
+## 🔭 Future Features <a name="future-features"></a>
+
+> Describe 1 - 3 features you will add to the project.
+- [ ] **Set up associations.**
+- [ ] **Add basic UI.**
+- [ ] **Preserve data**
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 <!-- CONTRIBUTING -->
