@@ -82,6 +82,7 @@ class App
 
   # Create a book
   def create_book
+    id = @books.count + 1
     print 'Title: '
     title = gets.chomp
 
@@ -114,28 +115,15 @@ class App
     @rentals << rental
     puts 'Rental created successfully'
   end
-
-  # List all rental by a given person
+   
   def list_rentals
-    print 'Id of person:'
+    print "\nEnter person id (not number): "
     id = gets.chomp.to_i
-
-    person = @people.find { |p| p.id == id }
-    if person.nil?
-      puts "No person found with id #{id}"
-      return
-    end
-
-    puts 'Rentals: '
-
-    rentals = @rentals.select { |r| r.id == id }
-    if rentals.empty?
-      puts "No rentals found for person with id #{id}"
-      return
-    end
-
-    rentals.each do |rental|
-      puts "Date: #{rental.date}, Book \"#{rental.book.title}\" by #{rental.person.name}"
+    puts 'Rentals:'
+    @rentals.each do |rent|
+      puts " Date: #{rent.date} Book: #{rent.book.title} Author: #{rent.book.author}" if rent.person.id == id
+      puts "\n"
     end
   end
+
 end
