@@ -82,7 +82,6 @@ class App
 
   # Create a book
   def create_book
-    id = @books.count + 1
     print 'Title: '
     title = gets.chomp
 
@@ -115,7 +114,7 @@ class App
     @rentals << rental
     puts 'Rental created successfully'
   end
-   
+
   def list_rentals
     print "\nEnter person id (not number): "
     id = gets.chomp.to_i
@@ -125,5 +124,4 @@ class App
       puts "\n"
     end
   end
-
 end
