@@ -13,6 +13,14 @@ class App
     @rentals = {}
   end
 
+  def display_message(message, is_print)
+    if is_print
+      print message
+    else
+      puts message
+    end
+  end
+
   # List all books
   def list_all_books
     @books.each { |book| puts "Name: #{book.title}, Author: #{book.author}" }
@@ -34,14 +42,6 @@ class App
     when '2'
       create_teacher
     else display_message('Invalid input', false)
-    end
-  end
-
-  def display_message(message, is_print)
-    if is_print
-      print message
-    else
-      puts message
     end
   end
 
