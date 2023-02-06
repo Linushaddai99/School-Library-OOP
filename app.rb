@@ -25,7 +25,7 @@ class App
 
   # Create person
   def create_person
-    puts 'Do you want to create a student (1) or a teacher (2)?[input the number]:'
+    display_message('Do you want to create a student (1) or a teacher (2)?[input the number]:', false)
     answer = gets.chomp
     case answer
     when '1'
@@ -33,19 +33,27 @@ class App
 
     when '2'
       create_teacher
-    else puts 'Invalid input'
+    else display_message('Invalid input', false)
+    end
+  end
+
+  def display_message(message, is_print)
+    if is_print
+      print message
+    else
+      puts message
     end
   end
 
   # Create a student
   def create_student
-    print 'Enter your age: '
+    display_message('Enter your age: ', true)
     student_age = gets.chomp.to_i
 
-    print 'Enter your name: '
+    display_message('Enter your name: ', true)
     student_name = gets.chomp
 
-    print 'Parent permission[Y/N]: '
+    display_message('Parent permission[Y/N]: ', true)
     parent_permission = gets.chomp
 
     case parent_permission
@@ -61,36 +69,36 @@ class App
 
     student = Student.new(student_age, student_name, parent_permission: parent_permission)
     @people << student
-    puts 'Person created successfully'
+    display_message('Person created successfully', false)
   end
 
   # Create a teacher
   def create_teacher
-    print 'Enter your age: '
+    display_message('Enter your age: ', true)
     teacher_age = gets.chomp
 
-    print 'Enter your name: '
+    display_message('Enter your name: ', true)
     teacher_name = gets.chomp
 
-    print 'Enter your specialization: '
+    display_message('Enter your specialization: ', true)
     teacher_specialization = gets.chomp
 
     teacher = Teacher.new(teacher_age, teacher_specialization, teacher_name)
-    puts 'Person created successfully'
+    display_message('Person created successfully', false)
     @people << teacher
   end
 
   # Create a book
   def create_book
-    print 'Title: '
+    display_message('Title: ', true)
     title = gets.chomp
 
-    print 'Author: '
+    display_message('Author: ', true)
     author = gets.chomp
     book = Book.new(title, author)
     @books << book
 
-    puts 'Book created successfully'
+    display_message('Book created successfully', false)
   end
 
   # Create a rental

@@ -1,15 +1,5 @@
 require './app'
 
-# def options
-#   puts '1 - List all books'
-#   puts '2 - List all people'
-#   puts '3 - Create a person'
-#   puts '4 - Create a book'
-#   puts '5 - Create a rental'
-#   puts '6 - List all rentals for a giving person id'
-#   puts '7 - Exit'
-# end
-
 def choose_options(input, app)
   case input
   when 1
@@ -30,7 +20,15 @@ end
 def main
   app = App.new
   puts 'Welcome to School Library App'
-  options = ['List all books','List all people', 'Create a person', 'Create a book', 'Create a rental', 'List all rentals for a giving person id', 'Exit']
+  options = [
+    'List all books',
+    'List all people',
+    'Create a person',
+    'Create a book',
+    'Create a rental',
+    'List all rentals for a giving person id',
+    'Exit'
+  ]
   loop do
     options.each_with_index { |option, index| puts "#{index + 1} - #{option}" }
     input = gets.chomp.to_i
