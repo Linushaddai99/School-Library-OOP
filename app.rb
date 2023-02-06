@@ -124,7 +124,6 @@ class App
     else
       @rentals[selected_person.instance_variable_get(:@id)] = [rental]
     end
-    # @rentals << rental
     puts 'Rental created successfully'
   end
 
