@@ -121,7 +121,6 @@ class App
     puts 'Rentals:'
     @rentals.each do |rent|
       puts " Date: #{rent.date} Book: #{rent.book.title} Author: #{rent.book.author}" if rent.person.id == id
-      puts "\n"
     end
   end
 end
