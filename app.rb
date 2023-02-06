@@ -10,7 +10,7 @@ class App
   def initialize
     @books = []
     @people = []
-    @rentals = []
+    @rentals = {}
   end
 
   # List all books
@@ -20,7 +20,7 @@ class App
 
   # List all people
   def list_all_people
-    @people.each { |person| puts "#{[person.class]} Id: #{person.id[0]}, Name: #{person.name}, Age: #{person.age}" }
+    @people.each { |person| puts "#{[person.class]} Id: #{person.id}, Name: #{person.name}, Age: #{person.age}" }
   end
 
   # Create person
@@ -119,7 +119,12 @@ class App
     rent_date = gets.chomp
 
     rental = Rental.new(rent_date, selected_person, rented_book)
-    @rentals << rental
+    if @rentals[selected_person.instance_variable_get(:@id)]
+      @rentals[selected_person.instance_variable_get(:@id)].push(rental)
+    else
+      @rentals[selected_person.instance_variable_get(:@id)] = [rental]
+    end
+    # @rentals << rental
     puts 'Rental created successfully'
   end
 
@@ -127,8 +132,6 @@ class App
     print "\nEnter person id (not number): "
     id = gets.chomp.to_i
     puts 'Rentals:'
-    @rentals.each do |rent|
-      puts " Date: #{rent.date} Book: #{rent.book.title} Author: #{rent.book.author}" if rent.person.id == id
-    end
+    puts @rentals[id]
   end
 end
