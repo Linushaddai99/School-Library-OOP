@@ -10,7 +10,15 @@ class App
   def initialize
     @books = []
     @people = []
-    @rentals = []
+    @rentals = {}
+  end
+
+  def display_message(message, is_print)
+    if is_print
+      print message
+    else
+      puts message
+    end
   end
 
   # List all books
@@ -20,12 +28,12 @@ class App
 
   # List all people
   def list_all_people
-    @people.each { |person| puts "#{[person.class]} Id: #{person.id[0]}, Name: #{person.name}, Age: #{person.age}" }
+    @people.each { |person| puts "#{[person.class]} Id: #{person.id}, Name: #{person.name}, Age: #{person.age}" }
   end
 
   # Create person
   def create_person
-    puts 'Do you want to create a student (1) or a teacher (2)?[input the number]:'
+    display_message('Do you want to create a student (1) or a teacher (2)?[input the number]:', false)
     answer = gets.chomp
     case answer
     when '1'
@@ -33,19 +41,19 @@ class App
 
     when '2'
       create_teacher
-    else puts 'Invalid input'
+    else display_message('Invalid input', false)
     end
   end
 
   # Create a student
   def create_student
-    print 'Enter your age: '
+    display_message('Enter your age: ', true)
     student_age = gets.chomp.to_i
 
-    print 'Enter your name: '
+    display_message('Enter your name: ', true)
     student_name = gets.chomp
 
-    print 'Parent permission[Y/N]: '
+    display_message('Parent permission[Y/N]: ', true)
     parent_permission = gets.chomp
 
     case parent_permission
@@ -61,36 +69,36 @@ class App
 
     student = Student.new(student_age, student_name, parent_permission: parent_permission)
     @people << student
-    puts 'Person created successfully'
+    display_message('Person created successfully', false)
   end
 
   # Create a teacher
   def create_teacher
-    print 'Enter your age: '
+    display_message('Enter your age: ', true)
     teacher_age = gets.chomp
 
-    print 'Enter your name: '
+    display_message('Enter your name: ', true)
     teacher_name = gets.chomp
 
-    print 'Enter your specialization: '
+    display_message('Enter your specialization: ', true)
     teacher_specialization = gets.chomp
 
     teacher = Teacher.new(teacher_age, teacher_specialization, teacher_name)
-    puts 'Person created successfully'
+    display_message('Person created successfully', false)
     @people << teacher
   end
 
   # Create a book
   def create_book
-    print 'Title: '
+    display_message('Title: ', true)
     title = gets.chomp
 
-    print 'Author: '
+    display_message('Author: ', true)
     author = gets.chomp
     book = Book.new(title, author)
     @books << book
 
-    puts 'Book created successfully'
+    display_message('Book created successfully', false)
   end
 
   # Create a rental
@@ -111,7 +119,11 @@ class App
     rent_date = gets.chomp
 
     rental = Rental.new(rent_date, selected_person, rented_book)
-    @rentals << rental
+    if @rentals[selected_person.instance_variable_get(:@id)]
+      @rentals[selected_person.instance_variable_get(:@id)].push(rental)
+    else
+      @rentals[selected_person.instance_variable_get(:@id)] = [rental]
+    end
     puts 'Rental created successfully'
   end
 
@@ -119,9 +131,6 @@ class App
     print "\nEnter person id (not number): "
     id = gets.chomp.to_i
     puts 'Rentals:'
-    @rentals.each do |rent|
-      puts " Date: #{rent.date} Book: #{rent.book.title} Author: #{rent.book.author}" if rent.person.id == id
-      puts "\n"
-    end
+    puts @rentals[id]
   end
 end
